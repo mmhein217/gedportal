@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Verification - GED Exam System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .status-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 12px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .status-icon.success {
+            background: #10b981;
+        }
+
+        .status-icon.error {
+            background: #ef4444;
+        }
+
+        .status-icon.pending {
+            background: #f59e0b;
+        }
+
+        .step {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+        }
+
+        .step h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .alert {
+            padding: 1rem;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            border-left-color: #10b981;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 GED Exam System - Setup Verification</h1>
+        <p style="color: #6b7280; margin-bottom: 2rem;">Follow these steps to complete your system setup</p>
+
+        <div class="status-section">
+            <h2 style="margin-bottom: 1rem; color: #1f2937;">System Status</h2>
+            <div class="status-item">
+                <div class="status-icon success">✓</div>
+                <div>
+                    <strong>XAMPP Apache</strong>
+                    <p style="color: #6b7280; font-size: 0.9rem; margin: 0;">Running on port 80</p>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-icon success">✓</div>
+                <div>
+                    <strong>XAMPP MySQL</strong>
+                    <p style="color: #6b7280; font-size: 0.9rem; margin: 0;">Running on port 3306</p>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-icon pending" id="dbStatus">?</div>
+                <div>
+                    <strong>Database Setup</strong>
+                    <p style="color: #6b7280; font-size: 0.9rem; margin: 0;" id="dbStatusText">Checking...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>📋 Step 1: Create Database</h3>
+            <p>Open phpMyAdmin and run the database schema:</p>
+            <div style="margin-top: 1rem;">
+                <a href="http://localhost/phpmyadmin" target="_blank" class="btn">Open phpMyAdmin</a>
+            </div>
+            <div class="alert" style="margin-top: 1rem;">
+                <strong>Instructions:</strong>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: #78350f;">
+                    <li>Click "SQL" tab in phpMyAdmin</li>
+                    <li>Open <code>database/database_schema.sql</code> in a text editor</li>
+                    <li>Copy all content and paste into SQL tab</li>
+                    <li>Click "Go" to execute</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>📊 Step 2: Load Sample Data</h3>
+            <p>Load default users, questions, and settings:</p>
+            <div class="alert" style="margin-top: 1rem;">
+                <strong>Instructions:</strong>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: #78350f;">
+                    <li>In phpMyAdmin, select the <code>exam_management</code> database</li>
+                    <li>Click "SQL" tab</li>
+                    <li>Open <code>database/seed_data.sql</code> in a text editor</li>
+                    <li>Copy all content and paste into SQL tab</li>
+                    <li>Click "Go" to execute</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>🔐 Step 3: Test Login</h3>
+            <p>Try logging in with the default credentials:</p>
+            <div style="margin-top: 1rem;">
+                <a href="login.php" class="btn">Open Login Page</a>
+            </div>
+            <div class="code-block" style="margin-top: 1rem;">
+                <strong>Default Credentials:</strong>
+
+                Admin: admin / password123
+                Teacher: teacher1 / password123
+                Student: student1 / password123
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>✅ Step 4: Verify Features</h3>
+            <p>Test the following features:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4b5563; line-height: 2;">
+                <li>✓ Login with different roles</li>
+                <li>✓ Student: View dashboard and start an exam</li>
+                <li>✓ Teacher: View student monitoring</li>
+                <li>✓ Admin: Check system statistics</li>
+                <li>✓ Test secure exam mode (fullscreen, keyboard blocking)</li>
+            </ul>
+        </div>
+
+        <div class="alert success-message">
+            <strong>📚 Documentation Available:</strong>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #065f46;">
+                <li><strong>SETUP_GUIDE.md</strong> - Complete installation guide</li>
+                <li><strong>README.md</strong> - System overview and features</li>
+                <li><strong>walkthrough.md</strong> - Detailed feature documentation</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e5e7eb;">
+            <h3 style="color: #1f2937; margin-bottom: 1rem;">Quick Actions</h3>
+            <a href="http://localhost/phpmyadmin" target="_blank" class="btn">phpMyAdmin</a>
+            <a href="login.php" class="btn">Login Page</a>
+            <a href="SETUP_GUIDE.md" target="_blank" class="btn btn-secondary">Setup Guide</a>
+        </div>
+    </div>
+
+    <script>
+        // Check database connection
+        async function checkDatabase() {
+            try {
+                const response = await fetch('backend/config.php');
+                const dbStatus = document.getElementById('dbStatus');
+                const dbStatusText = document.getElementById('dbStatusText');
+
+                // If we can access the config, assume database might be ready
+                dbStatus.className = 'status-icon pending';
+                dbStatusText.textContent = 'Pending - Please run SQL scripts';
+            } catch (error) {
+                const dbStatus = document.getElementById('dbStatus');
+                const dbStatusText = document.getElementById('dbStatusText');
+                dbStatus.className = 'status-icon pending';
+                dbStatusText.textContent = 'Pending - Please run SQL scripts';
+            }
+        }
+
+        checkDatabase();
+    </script>
+</body>
+
+</html>

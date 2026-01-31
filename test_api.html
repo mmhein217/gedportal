@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Test</title>
+</head>
+
+<body>
+    <h1>API Connection Test</h1>
+    <button onclick="testApi()">Test Get Subjects</button>
+    <div id="output" style="white-space:pre;background:#f0f0f0;padding:10px;margin-top:10px;border:1px solid #ccc">
+    </div>
+    <script>
+        async function testApi() {
+            const out = document.getElementById('output');
+            out.textContent = 'Fetching...';
+            try {
+                const res = await fetch('api/admin.php?action=get_subjects');
+                const text = await res.text();
+                out.textContent += '\nRaw Response:\n' + text;
+                try {
+                    const json = JSON.parse(text);
+                    out.textContent += '\n\nJSON Parse Success:\n' + JSON.stringify(json, null, 2);
+                } catch (e) {
+                    out.textContent += '\n\nJSON Parse Error: ' + e.message;
+                }
+            } catch (err) {
+                out.textContent = 'Fetch Error: ' + err.message;
+            }
+        }
+        testApi();
+    </script>
+</body>
+
+</html>
