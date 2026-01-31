@@ -97,8 +97,13 @@ Since your project is not yet a git repository, you need to initialize it and pu
         mysql -u ged_user -p exam_management < seed.sql
         ```
     *   **Option B (SCP)**: Upload from your local PC.
+    *   **Option B (SCP)**: Upload from your local PC.
+        > **Windows Users:** When generating the SQL file, use `--result-file` to avoid encoding errors (ASCII '\0'):
+        > `mysqldump -u root exam_management --result-file=database_export_latest.sql`
+        
+        Use `database_export_latest.sql` (which contains all your data).
         ```bash
-        scp -i "key.pem" database_seed_ec2.sql ubuntu@IP:/home/ubuntu/seed.sql
+        scp -i "key.pem" database_export_latest.sql ubuntu@IP:/home/ubuntu/seed.sql
         ```
 
 ---
