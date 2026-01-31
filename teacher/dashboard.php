@@ -329,8 +329,8 @@ $user = getCurrentUser();
                 <div style="font-weight:600;margin-bottom:0.25rem"><?php echo htmlspecialchars($user['full_name']); ?>
                 </div>
                 <div style="font-size:0.85rem;color:var(--gray)">Teacher</div>
-                <button onclick="logout()" class="logout-btn" style="width:100%;background:none;cursor:pointer">Log
-                    Out</button>
+                <a href="../logout.php" class="logout-btn"
+                    style="width:100%;text-decoration:none;display:block;text-align:center;">Log Out</a>
             </div>
         </aside>
 

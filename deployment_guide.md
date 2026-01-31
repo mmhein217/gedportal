@@ -177,3 +177,27 @@ Since your project is not yet a git repository, you need to initialize it and pu
 3.  Go to **Admin > Settings** to verify the system is running.
 
 **🎉 Deployment Complete!**
+
+---
+
+## Maintenance: How to Update
+
+When you make changes locally and want to update the server:
+
+1.  **Local Machine**:
+    ```bash
+    git add .
+    git commit -m "Description of changes"
+    git push origin main
+    ```
+
+2.  **EC2 Server**:
+    ```bash
+    ssh -i "ged-key.pem" ubuntu@YOUR_IP
+    cd /var/www/html
+    # Only needs to be run once if you see "dubious ownership" error:
+    sudo git config --global --add safe.directory /var/www/html
+    
+    sudo git pull origin main
+    ```
+    *(Note: If you see "Permission denied", use `sudo git pull`)*

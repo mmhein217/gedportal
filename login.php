@@ -251,12 +251,7 @@
                 </button>
             </form>
 
-            <div class="demo-credentials">
-                <h4>📝 Demo Credentials</h4>
-                <p><strong>Admin:</strong> admin / password123</p>
-                <p><strong>Teacher:</strong> teacher1 / password123</p>
-                <p><strong>Student:</strong> student1 / password123</p>
-            </div>
+
         </div>
     </div>
 
